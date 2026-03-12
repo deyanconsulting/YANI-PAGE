@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEYAN CONSULTING | Soluciones EHS de Alto Nivel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #76bc43; 
+            --deep-black: #0a0a0a;
+            --surface-gray: #111111;
+            --card-gray: #1a1a1c;
+            --border-glow: rgba(118, 188, 67, 0.2);
+            --white: #ffffff;
+            --text-muted: #a1a1aa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--deep-black); color: var(--white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* HEADER & LOGO */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 0.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-main img {
+            height: 90px;
+            width: auto;
+            transition: 0.3s ease;
+            object-fit: contain;
+        }
+
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-green); }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 180px 5% 100px;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            gap: 50px;
+            background: radial-gradient(circle at 10% 20%, rgba(118, 188, 67, 0.08) 0%, transparent 40%);
+        }
+
+        .hero-text { flex: 1.2; }
+        .hero-text h1 { font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-text h1 span { color: var(--primary-green); }
+        .hero-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; }
+
+        .hero-img { flex: 1; text-align: right; }
+        .hero-img img { 
+            width: 100%; 
+            max-width: 600px;
+            border-radius: 12px; 
+            box-shadow: 0 0 40px var(--border-glow);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.5s ease;
+        }
+        .hero-img img:hover { transform: translateY(-10px) rotate(-1deg); }
+
+        /* SECCIONES DINÁMICAS CON IMÁGENES PROPIAS */
+        section { padding: 100px 5%; }
+        .section-tag { color: var(--primary-green); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; display: block; margin-bottom: 1rem; }
+        h2 { font-size: 2.8rem; margin-bottom: 3rem; font-weight: 800; }
+
+        .content-block {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 120px;
+        }
+
+        .content-block.reverse { flex-direction: row-reverse; }
+
+        .text-side { flex: 1; }
+        .image-side { flex: 1.2; position: relative; }
+        .image-side img { 
+            width: 100%; 
+            border-radius: 8px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* CARD GRID */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+        }
+
+        .card:hover { border-color: var(--primary-green); transform: translateY(-10px); }
+        .card img { width: 100%; height: 250px; object-fit: cover; filter: brightness(0.8); transition: 0.4s; }
+        .card:hover img { filter: brightness(1); }
+        .card-body { padding: 30px; }
+        .card-body h3 { margin-bottom: 15px; color: var(--primary-green); }
+
+        /* BUTTONS */
+        .btn {
+            padding: 1.2rem 2.8rem;
+            background: var(--primary-green);
+            color: var(--deep-black);
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 4px;
+            display: inline-block;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(118, 188, 67, 0.2); }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 5% 40px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-logo { height: 70px; margin-bottom: 30px; object-fit: contain; }
+
+        @media (max-width: 1024px) {
+            .hero, .content-block, .content-block.reverse { flex-direction: column; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-img { text-align: center; margin-top: 40px; }
+            .hero-img img { width: 90%; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-main">
+            <img src="logo.png" alt="DEYAN CONSULTING" width="150">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#consultoria">Consultoría</a></li>
+            <li><a href="#entrenamiento">Capacitación</a></li>
+            <li><a href="#software">SOLUCIONES</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <span class="section-tag">NOM-035-STPS-2018</span>
+            <h1>Soluciones inteligentes <span>para cumplimiento de la</span>  NOM-035</h1>
+            <p>Consultoría especializada y asistencia digital con asistencia virtual YANI, diseñada para orientar a empresas y colaboradores en la gestión de factores de riesgo psicosocial.</p>
+            <a href="#contacto" class="btn">Solicitar Asesoria</a>
+        </div>
+        <div class="hero-img">
+            <img src="PantallaEHS.png.JPG" alt="Dashboard de Gestión DEYAN Consulting">
+        </div>
+    </section>
+
+    <section id="consultoria" style="background: var(--surface-gray);">
+        <div class="content-block">
+            <div class="text-side">
+                <span class="section-tag">Consultoría especializada en NOM-035</span>
+                <h2>Cumplimiento con <span>Visión Estratégica</span></h2>
+                <p>Nuestro modelo de intervención permite alinear el cumplimiento normativo con la eficiencia operativa. No solo diagnosticamos, acompañamos a su empresa en la ejecución de cambios culturales, liderazgo efectivo y retención de talento.</p>
+            </div>
+            <div class="image-side">
+                <img src="jconsultora1.png.JPG" alt="Sesión de Implementación Estratégica">
+            </div>
+        </div>
+    </section>
+
+    <section id="entrenamiento">
+        <div class="content-block reverse">
+            <div class="text-side">
+                <span class="section-tag">Capacitacion</span>
+                <h2>Capacitacion en prevención<span> de riesgos psicosociales</span></h2>
+                <p>Diseñamos programas de capacitación para directivos y colaboradores enfocados en liderazgo saludable, prevención del estrés laboral y fortalecimiento del entorno organizacional conforme a la NOM-035.</p>
+            </div>
+            <div class="image-side">
+                <img src="kConsultrain.png.JPG" alt="Entrenamiento Especializado Deyan">
+            </div>
+        </div>
+    </section>
+
+    <section id="software" style="background: var(--surface-gray);">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <span class="section-tag">SOLUCIONES</span>
+            <h2>Tecnología aplicada al cumplimiento de la<span> NOM-035</span></h2>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <img src="PantallaSurvey.png.JPG" alt="Encuesta de Evaluación Laboral">
+                <div class="card-body">
+                    <h3>Asistente virtual YANI</h3>
+                    <p>YANI es un asistente virtual basado en inteligencia artificial que orienta a empresas y colaboradores sobre la NOM-035 y los factores de riesgo psicosocial, facilitando el acceso a información clara y oportuna.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="nom035.png.JPG" alt="Cumplimiento NOM-035-STPS">
+                <div class="card-body">
+                    <h3>Orientación inmediata a traves del chat</h3>
+                    <p>Mediante el chat disponible en este sitio web, los usuarios pueden interactuar con YANI para resolver dudas sobre el entorno organizacional, la prevención de riesgos psicosociales y las obligaciones relacionadas con la NOM-035.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <span class="section-tag">Contacto</span>
+            <h2><span>Asesoria</span> especializada</h2>
+            <p style="margin-bottom: 40px; color: var(--text-muted);">Las organizaciones interesadas en implementar la NOM-035 o fortalecer su entorno organizacional, pueden establecer contacto para recibir orientación y soluciones adaptadas a sus necesidades. Asimismo, se invita a utilizar el chat disponible en la esquina inferior derecha de esta página, identificado con un círculo verde con el ícono de diálogo, donde es posible interactuar con el asistente virtual YANI y obtener incluso una evaluacion preliminar del nivel de cumplimiento de la NOM-035 de su empresa.</p>
+            <form style="display: grid; gap: 1rem; text-align: left;" onsubmit="event.preventDefault(); alert('Gracias por su interés. Un consultor senior le contactará pronto.');">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <input type="text" placeholder="Nombre completo" style="padding: 1rem; background: #1a1a1c; border: 1px solid #333; color: white; border-radius: 4px;">
+                    <input type="email" placeholder="Email Corporativo" style="padding: 1rem; background: #1a1a1c; border: 1px solid #333; color: white; border-radius: 4px;">
+                </div>
+                <textarea placeholder="Cuéntenos brevemente sobre sus desafíos en EHS o Ambiente Laboral" style="padding: 1rem; background: #1a1a1c; border: 1px solid #333; color: white; min-height: 150px; border-radius: 4px;"></textarea>
+                <button type="submit" class="btn">Solicitar asesoria</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo.png" alt="Deyan Consulting" class="footer-logo">
+        <p style="color: var(--white); font-weight: 600;">DEYAN CONSULTING | MÉXICO</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">&copy; 2026 Todos los derechos reservados.</p>
+        <p style="color: var(--primary-green); font-size: 0.8rem; margin-top: 15px;">Seguridad · Salud Ocupacional · Ambiente Laboral · NOM-035</p>
+    </footer>
+
+    <!-- Scripts del Botpress -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/03/10/21/20260310210211-MM0VGOM2.js" defer></script>
+
+</body>
+</html>
